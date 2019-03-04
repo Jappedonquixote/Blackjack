@@ -1,42 +1,50 @@
-import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Blackjack");
+        Deck deck = new Deck();
+
+        System.out.println(deck.);
 
     }
 }
 
-class deckOfCards {
-
-    cardSuite spades = new cardSuite();
-    cardSuite hearts = new cardSuite();
-    cardSuite diamonds = new cardSuite();
-    cardSuite clubs = new cardSuite();
-
-    int[] deckOfCardsValues = {spades, hearts, diamonds, clubs};
-
-
+class Deck {
+    Card[] cards;
+    Deck() {
+        int numberOfCards = 20;
+        cards = new Card[numberOfCards];
+        for (int i = 0; i < cards.length ; i++) {
+            Card card = new Card();
+            card.suit = CardGenerator.provideSuit();
+            card.value = CardGenerator.provideValue();
+            cards[i] = card;
+        }
+    }
 }
 
-class cardSuite {
-    ArrayList<Integer>
-    int[] numberedCards = {2, 3, 4, 5, 6, 7, 8, 9};
-    int[] ace = {11}; //moet ook 1 kunnen zijn later
-    int[] royals = {10, 10, 10,};
-
-
-
+class Card {
+    String suit;
+    String value;
 }
 
-class player {
+class CardGenerator {
+    static Random random =new Random();
+    static String[] suits = {"Spades", "Diamonds", "Clubs", "Hearts"};
+    static String[] value = {"Ace", "King", "Queen", "Jack", "10" , "9", "8", "7", "6", "5", "4", "3", "2"}
 
-}
+    static String provideSuit() {
+        int outcome = random.nextInt(suits.length);
+        return suits[outcome];
+    }
 
-class dealer {
-
+    static String provideValue() {
+        int outcome = random.nextInt(value.length);
+        return value[outcome];
+    }
 }
 
 //player
